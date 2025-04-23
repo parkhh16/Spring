@@ -1,0 +1,70 @@
+Springboot+ 마이바티스
+이름 ztest5
+패키지 com.ssafy
+의존성 밑에 4개 +jsp 3개는 내가 추가
+Spring web,Spring Boot devTools, myBatis Framework
+생성 후 jsp 삼형제 xml에 넣기
+DTO
+	String userid;
+	String userpw;
+	String name;
+DB
+	db명 ssafy_test
+	id	ssafy
+	pw	ssafy
+	table명	member
+Create Datebase ...
+
+Create table member(
+	userid VARCHAR(50) PRIMARY KEY,
+	userpw VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL
+};
+select, delete, update, insert
+나뭇잎 설정하기
+
+mybatisconfig
+@configuration
+@mapperScan // dao interface 위치
+mapper.xml 파일 만들기
+
+
+
+----------
+의존성
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
+        <!-- jsp를 사용하겠다 -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+        <!-- jstl을 사용하겠다. core태그사용가능 -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
+        <!-- jstl을 사용하겠다. -->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        </dependency>
+
+
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.0.33</version>
+</dependency>
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.19</version>
+</dependency>
+
+
+<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3306/ssafy_board?serverTimezone=UTC"/>
+<property name="username" value="ssafy"/>
+<property name="password" value="ssafy"/>
