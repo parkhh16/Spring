@@ -1,0 +1,32 @@
+<!-- src/main/resources/mapper/UserMapper.xml -->
+<mapper namespace="com.nyamcochi.dao.UserDao">
+
+    <insert id="insertUser" parameterType="com.nyamcochi.dto.UserDTO">
+        INSERT INTO user(user_id, password, age, height_cm, weight_kg, goal)
+        VALUES (#{userId}, #{password}, #{age}, #{heightCm}, #{weightKg}, #{goal})
+    </insert>
+
+    <select id="login" parameterType="map" resultType="com.nyamcochi.dto.UserDTO">
+        SELECT * FROM user WHERE user_id = #{userId} AND password = #{password}
+    </select>
+
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM user WHERE user_id = #{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="com.nyamcochi.dto.UserDTO">
+        UPDATE user
+        SET password = #{password}, age = #{age},
+            height_cm = #{heightCm}, weight_kg = #{weightKg}, goal = #{goal}
+        WHERE user_id = #{userId}
+    </update>
+
+    <select id="selectAllUsers" resultType="com.nyamcochi.dto.UserDTO">
+        SELECT * FROM user
+    </select>
+
+    <select id="findById" parameterType="String" resultType="com.nyamcochi.dto.UserDTO">
+        SELECT * FROM user WHERE user_id = #{userId}
+    </select>
+
+</mapper>
