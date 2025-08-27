@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/legacy_nft?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: ssafy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 아래는 h2 위는 mysql
+#    url: jdbc:h2:mem:legacy;MODE=MySQL;DB_CLOSE_DELAY=-1
+#    username: sa
+#    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate.ddl-auto: update
+    properties.hibernate.format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+logging:
+  level:
+    org.springdoc: DEBUG
+    org.springframework.web: DEBUG
