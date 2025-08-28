@@ -13,9 +13,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(cs -> cs.disable());
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/health", "/", "/h2-console/**").permitAll()
-                .requestMatchers("/api/wills/**").permitAll()
-                .requestMatchers("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll()
+                .requestMatchers(
+                        "/api/health", "/", "/h2-console/**",
+                        "/api/wills/**",
+                        "/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**",
+                        // ⬇️ 캐시 테스트용 엔드포인트 허용
+                        "/demo/users/**",
+                        // (선택) 캐시 관리 엔드포인트도 열고 싶다면
+                        "/admin/cache/**"
+                ).permitAll()
                 .anyRequest().authenticated()
         );
         http.headers(h -> h.frameOptions(fr -> fr.disable())); // H2 콘솔용

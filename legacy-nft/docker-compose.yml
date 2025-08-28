@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    image: legacy-nft-app
+    container_name: legacy-nft
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+    environment:
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_PASSWORD: ${REDIS_PASSWORD}  # 비번 쓸 땐 app에도 주입
+    depends_on:
+      - redis
+    restart: on-failure
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server","--appendonly","yes","--requirepass","${REDIS_PASSWORD}"]
+    volumes:
+      - redisdata:/data
+
+volumes:
+  redisdata:
